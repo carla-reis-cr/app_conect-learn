@@ -1,14 +1,22 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text , TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Input, Button, SocialIcon} from 'react-native-elements';
+import { Input, Button, SocialIcon } from 'react-native-elements';
 
-const urlImage = '../../../../public/images/logo_feevale.jpg'
+//componentes próprios
+import Logo from '../../components/Logo'
 
 export default function SignIn({navigation}){
+    const [display, setDisplay] = useState('none');
+    const [user, setUser] = useState(null);
+    const [password, setPassword] = useState(null);
+    const [login, setLogin] = useState(null);
+
     return(
+
         <View style={{flex:1, flexDirection:'row', alignItems:'center', justifyContent:'center'}}>    
         <View style={{borderRadius:6, width:280,}}>
+            <Logo />
             <Input
             placeholder='Email'
             leftIcon={
@@ -18,6 +26,9 @@ export default function SignIn({navigation}){
                 color='black'
                 />
             }
+            //errorStyle={{ color: 'red' }}
+            //errorMessage='ENTER A VALID ERROR HERE'
+            onChangeText={text=>setUser(text)}
             />
             <Input 
             placeholder="Informe a senha" 
@@ -29,7 +40,9 @@ export default function SignIn({navigation}){
                 color='black'
                 />
             }
+            onChangeText={text=>setPassword(text)}
             />
+
             <Button
             icon={
                 <Icon
@@ -67,5 +80,6 @@ export default function SignIn({navigation}){
             </View>
         </View>
         </View>
+
     )
 }
